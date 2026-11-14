@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chumbak Art | Bring Home Happiness</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .profile-menu-wrapper {
+            position: relative;
+        }
+
+        .profile-menu-btn {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 25px;
+            color: inherit;
+            padding: 5px;
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 42px;
+            right: 0;
+            width: 210px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+        }
+
+        .profile-dropdown a {
+            display: block;
+            padding: 13px 16px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .profile-dropdown a:hover {
+            background: #fff0e8;
+            color: #b85b38;
+        }
+
+        .profile-dropdown .dropdown-heading {
+            padding: 12px 16px;
+            font-weight: bold;
+            border-bottom: 1px solid #eee;
+            color: #b85b38;
+        }
+
+        .profile-dropdown a + a {
+            border-top: 1px solid #f2f2f2;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        ✦ Free shipping on orders above ₹999
+        &nbsp; | &nbsp;
+        Bring Home Art, Bring Home Happiness! ✦
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+       <a href="index.html" class="logo">
+    <div class="logo-icon">KS</div>
+
+    <div class="logo-text">
+        <h2>KiyShil</h2>
+        <span>ARTS</span>
+    </div>
+</a>
+
+        <button class="menu-toggle" onclick="toggleMenu()">
+            ☰
+        </button>
+
+        <nav id="nav">
+            <a class="active" href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="diy.html">DIY Ideas</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <!-- USER PROFILE -->
+            <div class="profile-menu-wrapper">
+
+                <button class="profile-menu-btn" id="profileMenuBtn"
+                    title="My Account">
+                    ♙
+                </button>
+
+                <div class="profile-dropdown" id="profileDropdown">
+
+                    <div class="dropdown-heading" id="profileHeading">
+                        Welcome to Chumbak Art
+                    </div>
+
+                    <a href="user/login.html" id="userLoginLink">
+                        👤 User Login
+                    </a>
+
+                    <a href="user/dashboard.html" id="userProfileLink"
+                        style="display:none;">
+                        My Profile
+                    </a>
+
+                    <a href="user/dashboard.html" id="myAccountLink"
+                        style="display:none;">
+                        My Account
+                    </a>
+
+                    <a href="user/login.html" id="userLogoutLink"
+                        style="display:none;">
+                        Logout
+                    </a>
+
+                    <a href="admin/login.html">
+                        🔐 Admin Login
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- WISHLIST -->
+            <a href="user/dashboard.html" title="Wishlist">♡</a>
+
+            <!-- CART -->
+            <a href="cart.html">
+                🛒 <span id="cart-count">0</span>
+            </a>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+
+            <div class="hero-copy">
+
+                <span class="eyebrow">
+                    HANDMADE WITH LOVE
+                </span>
+
+                <h1>
+                    Add a splash of <em>Art</em> to your life
+                </h1>
+
+                <p>
+                    Paintings · Crafts · Home Décor · DIY
+                </p>
+
+                <a class="btn btn-pink" href="shop.html">
+                    Shop Now <span>→</span>
+                </a>
+
+            </div>
+
+            <div class="hero-art">
+
+                <div class="art-sun">✿</div>
+
+                <div class="hero-visual">🐘</div>
+
+                <div class="hero-caption">
+                    Colour your world
+                    <br>
+                    <b>with creativity!</b>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORIES SECTION -->
+        <section class="section categories">
+
+            <div class="section-heading">
+                <span>✿</span>
+                <h2>Shop by Category</h2>
+                <span>✿</span>
+            </div>
+
+            <div class="category-grid">
+
+                <a class="category" href="shop.html?category=Paintings">
+                    <div class="category-icon">🖼️</div>
+                    <b>Paintings</b>
+                </a>
+
+                <a class="category" href="shop.html?category=Home%20Decor">
+                    <div class="category-icon">🏺</div>
+                    <b>Home Décor</b>
+                </a>
+
+                <a class="category" href="shop.html?category=Handmade%20Crafts">
+                    <div class="category-icon">🪔</div>
+                    <b>Handmade Crafts</b>
+                </a>
+
+                <a class="category" href="shop.html?category=Art%20Supplies">
+                    <div class="category-icon">🎨</div>
+                    <b>Art Supplies</b>
+                </a>
+
+                <a class="category" href="diy.html">
+                    <div class="category-icon">🧶</div>
+                    <b>DIY Ideas</b>
+                </a>
+
+                <a class="category" href="shop.html?category=Wall%20Decor">
+                    <div class="category-icon">🪷</div>
+                    <b>Wall Décor</b>
+                </a>
+
+                <a class="category" href="shop.html?category=Gifts">
+                    <div class="category-icon">🎁</div>
+                    <b>Gifts</b>
+                </a>
+
+                <a class="category" href="shop.html?category=Festive%20Decor">
+                    <div class="category-icon">🪔</div>
+                    <b>Festive Décor</b>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURED PRODUCTS SECTION -->
+        <section class="section">
+
+            <div class="section-heading">
+                <span>✿</span>
+                <h2>Trending Now</h2>
+                <span>✿</span>
+            </div>
+
+            <div class="product-grid" id="featured-products">
+                <p>Loading products...</p>
+            </div>
+
+            <div class="center">
+
+                <a class="btn btn-outline" href="shop.html">
+                    View All Products →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROMISE SECTION -->
+        <section class="promise-strip">
+
+            <div>🚚 <b>Fast & Reliable Shipping</b></div>
+
+            <div>🛡️ <b>Secure & Easy Ordering</b></div>
+
+            <div>♡ <b>Loved by Art Lovers</b></div>
+
+            <div>☏ <b>WhatsApp Support</b></div>
+
+        </section>
+
+
+        <!-- NEWSLETTER SECTION -->
+        <section class="newsletter" id="contact">
+
+            <div>
+
+                <h2>Subscribe to our Newsletter</h2>
+
+                <p>
+                    Get art tips, DIY ideas & exclusive offers!
+                </p>
+
+            </div>
+
+            <form onsubmit="event.preventDefault(); alert('Thank you for subscribing!')">
+
+                <input type="email"
+                    placeholder="Enter your email address"
+                    required>
+
+                <button class="btn btn-pink">
+                    Subscribe
+                </button>
+
+            </form>
+
+            <strong>
+                Stay Creative ♡
+                <br>
+                Stay Happy
+            </strong>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer id="about">
+
+        <div class="footer-brand">
+
+            Chumbak <span>Art</span>
+
+            <p>Craft · Decor · Inspire</p>
+
+        </div>
+
+        <div>
+
+            <b>Quick Links</b>
+
+            <a href="shop.html">Shop</a>
+
+            <a href="diy.html">DIY Ideas</a>
+
+            <a href="user/login.html">My Account</a>
+
+        </div>
+
+        <div>
+
+            <b>Need Help?</b>
+
+            <a href="#contact">Contact Us</a>
+
+            <a href="cart.html">Shopping Cart</a>
+
+            <small>
+                Orders are confirmed directly on WhatsApp.
+            </small>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Chumbak Art. Made with ♥
+        </div>
+
+    </footer>
+
+
+    <!-- PROFILE MENU SCRIPT -->
+    <script>
+
+        const profileMenuBtn =
+            document.getElementById("profileMenuBtn");
+
+        const profileDropdown =
+            document.getElementById("profileDropdown");
+
+        profileMenuBtn.addEventListener("click", function(event) {
+
+            event.stopPropagation();
+
+            profileDropdown.classList.toggle("show");
+
+        });
+
+        document.addEventListener("click", function(event) {
+
+            if (!profileDropdown.contains(event.target)) {
+                profileDropdown.classList.remove("show");
+            }
+
+        });
+
+
+        // USER LOGIN STATUS
+        // This assumes your user login saves userToken in localStorage.
+
+        const userToken = localStorage.getItem("userToken");
+
+        if (userToken) {
+
+            document.getElementById("profileHeading").textContent =
+                "Welcome, Art Lover! ♡";
+
+            document.getElementById("userLoginLink").style.display = "none";
+
+            document.getElementById("userProfileLink").style.display = "block";
+
+            document.getElementById("myAccountLink").style.display = "block";
+
+            document.getElementById("userLogoutLink").style.display = "block";
+
+        }
+
+        // USER LOGOUT
+        document.getElementById("userLogoutLink")
+            .addEventListener("click", function() {
+
+                localStorage.removeItem("userToken");
+                localStorage.removeItem("user");
+
+            });
+
+    </script>
+
+
+    <!-- EXISTING JAVASCRIPT FILES -->
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/app.js"></script>
+
+</body>
+</html>

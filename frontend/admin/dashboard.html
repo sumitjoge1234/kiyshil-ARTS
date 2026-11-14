@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Chumbak Art</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="admin-shell">
+
+    <aside class="admin-sidebar">
+        <a class="logo" href="../index.html">
+            Chumbak <span>Art</span>
+        </a>
+
+        <p>ADMIN PANEL</p>
+
+        <a class="selected" href="dashboard.html">▦ Dashboard</a>
+        <a href="#add-art">＋ Add New Art</a>
+        <a href="#manage-art">▧ Manage Art</a>
+        <a href="#orders">🛍 Orders</a>
+        <a href="../index.html">↗ View Website</a>
+        <a href="login.html">⇥ Logout</a>
+    </aside>
+
+    <main class="admin-main">
+
+        <div class="admin-top">
+            <div>
+                <span class="eyebrow">STORE MANAGEMENT</span>
+                <h1>Welcome, Admin!</h1>
+                <p>Manage your artwork and store.</p>
+            </div>
+
+            <a class="btn btn-outline" href="../index.html">
+                View Store ↗
+            </a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span>Total Products</span>
+                <b id="admin-product-count">0</b>
+                <small>Artwork in catalogue</small>
+            </div>
+
+            <div class="stat-card">
+                <span>Orders</span>
+                <b>0</b>
+                <small>Orders received</small>
+            </div>
+
+            <div class="stat-card">
+                <span>Customers</span>
+                <b>0</b>
+                <small>Registered users</small>
+            </div>
+        </div>
+
+        <section class="admin-panel" id="add-art">
+
+            <h2>Add New Artwork</h2>
+            <p>Add an artwork to your online collection.</p>
+
+            <form id="add-product-form" class="admin-form"
+                  enctype="multipart/form-data">
+
+                <div>
+                    <label>Artwork Name</label>
+                    <input id="art-name" type="text"
+                           required placeholder="Floral Elephant Painting">
+                </div>
+
+                <div>
+                    <label>Price (₹)</label>
+                    <input id="art-price" type="number"
+                           min="1" required placeholder="1499">
+                </div>
+
+                <div>
+                    <label>Category</label>
+                    <select id="art-category" required>
+                        <option value="">Select Category</option>
+                        <option value="Paintings">Paintings</option>
+                        <option value="Handmade Crafts">Handmade Crafts</option>
+                        <option value="Home Decor">Home Decor</option>
+                        <option value="Wall Decor">Wall Decor</option>
+                        <option value="Gifts">Gifts</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Product Image</label>
+                    <input id="art-image" type="file"
+                           accept="image/*" required>
+                </div>
+
+                <div class="wide">
+                    <label>Description</label>
+                    <textarea id="art-description"
+                              rows="3"
+                              placeholder="Write product description"></textarea>
+                </div>
+
+                <div class="wide">
+                    <label>Available Stock</label>
+                    <input id="art-stock" type="number"
+                           min="0" value="10">
+                </div>
+
+                <div class="wide">
+                    <button class="btn btn-pink" type="submit">
+                        ＋ Add Artwork
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+        <section class="admin-panel" id="manage-art">
+            <h2>Manage Artwork</h2>
+            <div id="admin-products">Loading products...</div>
+        </section>
+
+        <section class="admin-panel" id="orders">
+            <h2>Recent Orders</h2>
+            <p class="muted">Orders integration will be added separately.</p>
+        </section>
+
+    </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>

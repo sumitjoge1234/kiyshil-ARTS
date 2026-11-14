@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | Chumbak Art</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body class="auth-bg">
+
+    <main class="auth-card">
+
+        <a class="logo" href="../index.html">
+            Chumbak <span>Art</span>
+        </a>
+
+        <h2>Admin Login</h2>
+
+        <p>Sign in to manage your art store.</p>
+
+        <form id="admin-login-form">
+
+            <label for="admin-email">Email Address</label>
+
+            <input
+                id="admin-email"
+                type="email"
+                placeholder="admin@example.com"
+                autocomplete="username"
+                required
+            >
+
+            <label for="admin-password">Password</label>
+
+            <input
+                id="admin-password"
+                type="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required
+            >
+
+            <p id="login-message"
+               style="display:none; color:#d93025; margin:12px 0;">
+            </p>
+
+            <button
+                class="btn btn-pink full"
+                id="login-button"
+                type="submit">
+
+                Login to Admin Panel
+
+            </button>
+
+        </form>
+
+        <a class="back-link" href="../index.html">
+            ← Back to website
+        </a>
+
+    </main>
+
+    <script>
+
+        const ADMIN_API_URL =
+            "http://localhost:5000/api/auth/admin-login";
+
+        const loginForm =
+            document.getElementById("admin-login-form");
+
+        const loginButton =
+            document.getElementById("login-button");
+
+        const loginMessage =
+            document.getElementById("login-message");
+
+
+        loginForm.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const email = document
+                .getElementById("admin-email")
+                .value.trim();
+
+            const password = document
+                .getElementById("admin-password")
+                .value;
+
+            loginMessage.style.display = "none";
+
+            loginButton.disabled = true;
+            loginButton.textContent = "Please wait...";
+
+            try {
+
+                const response = await fetch(ADMIN_API_URL, {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+
+                    throw new Error(
+                        result.message || "Invalid email or password"
+                    );
+
+                }
+
+                if (!result.token) {
+                    throw new Error("Admin token not received");
+                }
+
+                localStorage.setItem(
+                    "adminToken",
+                    result.token
+                );
+
+                window.location.replace("dashboard.html");
+
+            }
+
+            catch (error) {
+
+                console.error("Admin Login Error:", error);
+
+                loginMessage.textContent =
+                    error.message || "Unable to connect to server.";
+
+                loginMessage.style.display = "block";
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Login to Admin Panel";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

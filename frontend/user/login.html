@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Chumbak Art</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="auth-bg">
+
+<main class="auth-card">
+
+    <a class="logo" href="../index.html">
+        Chumbak <span>Art</span>
+    </a>
+
+    <h2>Admin Login</h2>
+    <p>Login to manage your artwork.</p>
+
+    <form id="adminLoginForm">
+
+        <label>Email Address</label>
+        <input type="email" id="email"
+               placeholder="Admin email" required>
+
+        <label>Password</label>
+        <input type="password" id="password"
+               placeholder="Enter password" required>
+
+        <p id="loginMessage"></p>
+
+        <button type="submit" class="btn btn-pink full">
+            Login
+        </button>
+
+    </form>
+
+    <a class="back-link" href="../index.html">
+        ← Back to website
+    </a>
+
+</main>
+
+<script>
+const API = "http://localhost:5000/api/auth/admin-login";
+
+document.getElementById("adminLoginForm")
+.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const message = document.getElementById("loginMessage");
+    const button = this.querySelector("button");
+
+    button.disabled = true;
+    button.textContent = "Logging in...";
+    message.textContent = "";
+
+    try {
+        const response = await fetch(API, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(result.message || "Invalid login");
+        }
+
+        localStorage.setItem("adminToken", result.token);
+
+        window.location.href = "dashboard.html";
+
+    } catch(error) {
+        message.textContent = error.message;
+        message.style.color = "red";
+    } finally {
+        button.disabled = false;
+        button.textContent = "Login";
+    }
+
+});
+</script>
+
+</body>
+</html>

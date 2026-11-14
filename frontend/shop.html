@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shop | Chumbak Art</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        ✦ Free shipping on orders above ₹999 ✦
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <a class="logo" href="index.html">
+            Chumbak <span>Art</span>
+        </a>
+
+        <button class="menu-toggle" onclick="toggleMenu()">
+            ☰
+        </button>
+
+        <nav id="nav">
+            <a href="index.html">Home</a>
+            <a class="active" href="shop.html">Shop</a>
+            <a href="diy.html">DIY Ideas</a>
+            <a href="index.html#about">About Us</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="user/login.html">♙</a>
+            <a href="cart.html">
+                🛒 <span id="cart-count">0</span>
+            </a>
+        </div>
+
+    </header>
+
+
+    <!-- PAGE BANNER -->
+    <section class="page-banner">
+
+        <h1>Shop Our Collection</h1>
+
+        <p>Art · Crafts · Home Décor · DIY</p>
+
+    </section>
+
+
+    <!-- SHOP LAYOUT -->
+    <main class="shop-layout">
+
+        <!-- FILTER SIDEBAR -->
+        <aside class="filters">
+
+            <h3>Categories</h3>
+
+            <label>
+                <input type="checkbox" value="Paintings" onchange="filterProducts()">
+                Paintings
+            </label>
+
+            <label>
+                <input type="checkbox" value="Handmade Crafts" onchange="filterProducts()">
+                Handmade Crafts
+            </label>
+
+            <label>
+                <input type="checkbox" value="Home Decor" onchange="filterProducts()">
+                Home Décor
+            </label>
+
+            <label>
+                <input type="checkbox" value="Wall Decor" onchange="filterProducts()">
+                Wall Décor
+            </label>
+
+            <hr>
+
+            <h3>Price Range</h3>
+
+            <select id="price-filter" onchange="filterProducts()">
+
+                <option value="all">All prices</option>
+
+                <option value="500">Under ₹500</option>
+
+                <option value="1000">Under ₹1,000</option>
+
+                <option value="1500">Under ₹1,500</option>
+
+            </select>
+
+        </aside>
+
+
+        <!-- PRODUCTS SECTION -->
+        <section class="shop-products">
+
+            <div class="shop-toolbar">
+
+                <span id="result-count">
+                    Loading products...
+                </span>
+
+                <select id="sort-filter" onchange="filterProducts()">
+
+                    <option value="popular">Sort: Popularity</option>
+
+                    <option value="low">Price: Low to High</option>
+
+                    <option value="high">Price: High to Low</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- DATABASE PRODUCTS -->
+            <div class="product-grid" id="all-products">
+
+                <p>Loading products...</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="copyright">
+            © 2026 Chumbak Art. Made with ♥
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>
