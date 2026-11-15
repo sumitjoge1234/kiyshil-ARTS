@@ -5,7 +5,18 @@
 
 const WHATSAPP_NUMBER = "918263089641";
 
-// Add product to cart utility
+// ==========================================
+// GET PRODUCT NAME
+// ==========================================
+
+function getProductTitle(product) {
+    return product.title || product.name || "Art Product";
+}
+
+// ==========================================
+// ADD PRODUCT TO CART
+// ==========================================
+
 function addToCart(productId) {
 
     const product = productsCache.find(
@@ -30,7 +41,7 @@ function addToCart(productId) {
     } else {
         cart.push({
             id: product.id,
-            name: product.name,
+            name: getProductTitle(product),
             price: product.price,
             image: product.image,
             quantity: 1
@@ -44,8 +55,10 @@ function addToCart(productId) {
     alert("Product added to cart!");
 }
 
+// ==========================================
+// UPDATE CART COUNT
+// ==========================================
 
-// Update cart count
 function updateCartCount() {
 
     const cart = JSON.parse(
@@ -64,8 +77,10 @@ function updateCartCount() {
     }
 }
 
+// ==========================================
+// WHATSAPP ORDER
+// ==========================================
 
-// WhatsApp order
 function orderOnWhatsApp(productId) {
 
     const product = productsCache.find(
@@ -81,7 +96,7 @@ function orderOnWhatsApp(productId) {
 
 I want to order:
 
-Product: ${product.name}
+Product: ${getProductTitle(product)}
 Price: ₹${product.price}
 
 Please share more details.`;
@@ -92,8 +107,10 @@ Please share more details.`;
     window.open(url, "_blank");
 }
 
+// ==========================================
+// INITIALIZE CART
+// ==========================================
 
-// Initialize cart count
 document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
 });

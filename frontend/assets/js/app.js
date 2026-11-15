@@ -3,7 +3,8 @@
 // CHUMBAK ART - COMPLETE FRONTEND INTEGRATION
 // HOME + SHOP + ADMIN
 // ==========================================
-const API_BASE_URL = "https://kiyshil-arts-1.onrender.com";
+
+const API_BASE_URL = "https://kiyshil-arts-4.onrender.com";
 
 const API_URL = API_BASE_URL + "/api/products";
 const CATEGORY_API_URL = API_BASE_URL + "/api/categories";
@@ -30,9 +31,7 @@ async function apiRequest(url, options = {}) {
     }
 
     if (!response.ok || data.success === false) {
-        throw new Error(
-            data.message || data.error || "API Request Failed"
-        );
+        throw new Error(data.message || data.error || "API Request Failed");
     }
 
     return data;
@@ -121,7 +120,7 @@ function renderCategories() {
             <option value="">Select Category</option>
 
             ${categoriesCache.map(category => `
-                <option value="${category.id}">
+                <option value="${escapeHTML(category.id)}">
                     ${escapeHTML(category.category_name)}
                 </option>
             `).join("")}
@@ -199,9 +198,7 @@ function renderCategories() {
                 "dynamic-category-filters"
             );
 
-            if (oldContainer) {
-                oldContainer.remove();
-            }
+            if (oldContainer) oldContainer.remove();
 
             const checkboxContainer = document.createElement("div");
 
@@ -217,14 +214,6 @@ function renderCategories() {
             `).join("");
 
             heading.after(checkboxContainer);
-
-            sidebar.querySelectorAll(
-                'label:has(input[type="checkbox"])'
-            ).forEach(label => {
-                if (label.parentElement !== checkboxContainer) {
-                    label.remove();
-                }
-            });
         }
     }
 }
@@ -250,8 +239,7 @@ async function loadProducts() {
         document.querySelectorAll(
             "#featured-products, #all-products, #products, #product-list, #products-grid, .products-grid, #admin-products"
         ).forEach(container => {
-            container.innerHTML =
-                "<p>Products could not be loaded.</p>";
+            container.innerHTML = "<p>Products could not be loaded.</p>";
         });
     }
 }
@@ -279,16 +267,10 @@ function createProductCard(product) {
 
             <div class="product-image">
 
-                <span class="product-image-label">
-                    CHUMBAK ART
-                </span>
+                <span class="product-image-label">CHUMBAK ART</span>
 
-                <button
-                    type="button"
-                    class="heart"
-                    aria-label="Favorite product">
-                    ♡
-                </button>
+                <button type="button" class="heart"
+                    aria-label="Favorite product">♡</button>
 
                 ${
                     image
@@ -299,11 +281,7 @@ function createProductCard(product) {
                             loading="lazy"
                             onerror="this.style.display='none'; this.parentElement.classList.add('image-missing');">
                     `
-                    : `
-                        <div class="image-placeholder">
-                            ✿
-                        </div>
-                    `
+                    : `<div class="image-placeholder">✿</div>`
                 }
 
             </div>
@@ -321,9 +299,7 @@ function createProductCard(product) {
                 </p>
 
                 <div class="product-price-row">
-                    <span class="price">
-                        ₹${escapeHTML(price)}
-                    </span>
+                    <span class="price">₹${escapeHTML(price)}</span>
                 </div>
 
                 ${
@@ -339,14 +315,11 @@ function createProductCard(product) {
                 }
 
                 <div class="product-actions">
-
-                    <button
-                        type="button"
+                    <button type="button"
                         class="small-btn product-order-btn"
                         onclick="orderProduct('${encodeURIComponent(name)}')">
                         Order on WhatsApp
                     </button>
-
                 </div>
 
             </div>
@@ -417,23 +390,18 @@ function renderProducts() {
 
     if (sortFilter) {
         if (sortFilter.value === "low") {
-            filteredProducts.sort(
-                (a, b) => Number(a.price) - Number(b.price)
-            );
+            filteredProducts.sort((a, b) => Number(a.price) - Number(b.price));
         }
 
         if (sortFilter.value === "high") {
-            filteredProducts.sort(
-                (a, b) => Number(b.price) - Number(a.price)
-            );
+            filteredProducts.sort((a, b) => Number(b.price) - Number(a.price));
         }
     }
 
     const resultCount = document.getElementById("result-count");
 
     if (resultCount) {
-        resultCount.textContent =
-            `${filteredProducts.length} Products Found`;
+        resultCount.textContent = `${filteredProducts.length} Products Found`;
     }
 
     if (filteredProducts.length === 0) {
@@ -499,9 +467,7 @@ function setupAddProduct() {
         formData.append("stock", stock || 0);
         formData.append("image", image);
 
-        const submitButton = form.querySelector(
-            'button[type="submit"]'
-        );
+        const submitButton = form.querySelector('button[type="submit"]');
 
         if (submitButton) {
             submitButton.disabled = true;
@@ -545,9 +511,7 @@ function renderAdminProducts() {
 
     const count = document.getElementById("admin-product-count");
 
-    if (count) {
-        count.textContent = productsCache.length;
-    }
+    if (count) count.textContent = productsCache.length;
 
     if (productsCache.length === 0) {
         container.innerHTML = "<p>No artwork added yet.</p>";
@@ -572,20 +536,16 @@ function renderAdminProducts() {
                     <h3>${escapeHTML(name)}</h3>
 
                     <p>Category: ${escapeHTML(getCategoryName(product))}</p>
-
                     <p>Price: ₹${escapeHTML(product.price)}</p>
-
                     <p>Stock: ${escapeHTML(product.stock)}</p>
 
-                    <button
-                        type="button"
+                    <button type="button"
                         class="btn btn-pink"
                         onclick="deleteProduct(${Number(product.id)})">
                         Delete
                     </button>
 
                 </div>
-
             </div>
         `;
     }).join("");
@@ -597,19 +557,12 @@ function renderAdminProducts() {
 
 async function deleteProduct(id) {
 
-    const confirmDelete = confirm(
-        "Are you sure you want to delete this product?"
-    );
-
-    if (!confirmDelete) return;
+    if (!confirm("Are you sure you want to delete this product?")) return;
 
     try {
-        const data = await apiRequest(
-            API_URL + "/delete/" + id,
-            {
-                method: "DELETE"
-            }
-        );
+        const data = await apiRequest(API_URL + "/delete/" + id, {
+            method: "DELETE"
+        });
 
         alert(data.message || "Product Deleted Successfully!");
 
@@ -644,8 +597,7 @@ function orderProduct(encodedName) {
 
     const name = decodeURIComponent(encodedName);
 
-    const message =
-        `Hello! I want to order ${name} from Chumbak Art.`;
+    const message = `Hello! I want to order ${name} from Chumbak Art.`;
 
     const url =
         `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -660,11 +612,9 @@ function orderProduct(encodedName) {
 document.addEventListener("DOMContentLoaded", async () => {
 
     setupAddProduct();
-
     setupSearch();
 
     await loadCategories();
-
     await loadProducts();
 
     console.log("Chumbak Art Website Loaded Successfully!");
