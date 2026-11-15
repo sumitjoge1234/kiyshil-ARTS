@@ -4,9 +4,12 @@
    FRONTEND + BACKEND INTEGRATION
 ========================================== */
 
-const API = "http://localhost:5000/api";
-const UPLOAD_URL = "http://localhost:5000/uploads/";
-const API_URL = "http://localhost:5000/api/auth/admin-login";
+const API_BASE_URL = "https://kiyshil-arts-1.onrender.com";
+
+const API = API_BASE_URL + "/api";
+const UPLOAD_URL = API_BASE_URL + "/uploads/";
+const API_URL = API_BASE_URL + "/api/auth/admin-login";
+
 // ==========================================
 // API HELPER
 // ==========================================
@@ -64,7 +67,7 @@ function productImage(product) {
 
     if (image.startsWith("http")) return image;
 
-    return UPLOAD_URL + image.replace(/^\/+/, "");
+return UPLOAD_URL + String(image).replace(/^\/+/, "");
 }
 
 // ==========================================
