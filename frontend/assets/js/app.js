@@ -4,8 +4,7 @@
 // HOME + SHOP + ADMIN
 // ==========================================
 
-const API_BASE_URL = "https://kiyshil-arts-4.onrender.com";
-
+const API_BASE_URL = "https://kiyshil-arts-6.onrender.com";
 const API_URL = API_BASE_URL + "/api/products";
 const CATEGORY_API_URL = API_BASE_URL + "/api/categories";
 const IMAGE_URL = API_BASE_URL + "/uploads/";
