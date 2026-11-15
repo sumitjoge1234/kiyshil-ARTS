@@ -3,10 +3,11 @@
 // CHUMBAK ART - COMPLETE FRONTEND INTEGRATION
 // HOME + SHOP + ADMIN
 // ==========================================
+const API_BASE_URL = "https://kiyshil-arts-1.onrender.com";
 
-const API_URL = "http://localhost:5000/api/products";
-const CATEGORY_API_URL = "http://localhost:5000/api/categories";
-const IMAGE_URL = "http://localhost:5000/uploads/";
+const API_URL = API_BASE_URL + "/api/products";
+const CATEGORY_API_URL = API_BASE_URL + "/api/categories";
+const IMAGE_URL = API_BASE_URL + "/uploads/";
 const WHATSAPP_NUMBER = "918263089641";
 
 let productsCache = [];
